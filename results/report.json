@@ -1,0 +1,2318 @@
+{
+  "asOf": 1768089600000,
+  "profile": {
+    "id": "google-sre",
+    "name": "Google SRE workbook",
+    "description": "Four severity-tiered rules: two fast page-worthy burns and two slower ticket-worthy burns, each gated on a long and a short window agreeing.",
+    "periodSeconds": 2592000,
+    "rules": [
+      {
+        "id": "fast-burn-page",
+        "severity": "page",
+        "longWindowSeconds": 3600,
+        "shortWindowSeconds": 300,
+        "burnRate": 14.4,
+        "publishedConsumed": 0.02,
+        "action": "Page the on-call: at this rate 2% of the budget is gone in one hour."
+      },
+      {
+        "id": "medium-burn-page",
+        "severity": "page",
+        "longWindowSeconds": 21600,
+        "shortWindowSeconds": 1800,
+        "burnRate": 6,
+        "publishedConsumed": 0.05,
+        "action": "Page the on-call: at this rate 5% of the budget is gone in six hours."
+      },
+      {
+        "id": "slow-burn-ticket",
+        "severity": "ticket",
+        "longWindowSeconds": 86400,
+        "shortWindowSeconds": 7200,
+        "burnRate": 3,
+        "publishedConsumed": 0.1,
+        "action": "Open a ticket: at this rate 10% of the budget is gone in one day."
+      },
+      {
+        "id": "long-burn-ticket",
+        "severity": "ticket",
+        "longWindowSeconds": 259200,
+        "shortWindowSeconds": 21600,
+        "burnRate": 1,
+        "publishedConsumed": 0.1,
+        "action": "Open a ticket: the budget is being consumed faster than it replenishes."
+      }
+    ]
+  },
+  "slos": [
+    {
+      "spec": {
+        "name": "checkout",
+        "description": "Checkout API availability.",
+        "objective": 0.999,
+        "periodSeconds": 2592000,
+        "periodStart": "2026-01-01T00:00:00Z",
+        "metric": "requests_total",
+        "good": {
+          "matchers": {
+            "code": "=~2.."
+          }
+        },
+        "bad": {
+          "matchers": {
+            "code": "=~5.."
+          }
+        }
+      },
+      "asOf": 1768089600000,
+      "goodSeriesCount": 1,
+      "badSeriesCount": 1,
+      "period": {
+        "label": "period",
+        "windowSeconds": 864000,
+        "observedSeconds": 867600,
+        "coverage": 1,
+        "good": 239621500,
+        "bad": 378500,
+        "total": 240000000,
+        "errorRate": 0.0015770833333333333,
+        "burnRate": 1.5770833333333318,
+        "budgetConsumed": 0.5256944444444439,
+        "sufficient": true,
+        "note": "ok",
+        "start": 1767225600000,
+        "end": 1768089600000
+      },
+      "budget": {
+        "objective": 0.999,
+        "budgetRatio": 0.0010000000000000009,
+        "periodSeconds": 2592000,
+        "periodStart": 1767225600000,
+        "periodEnd": 1769817600000,
+        "elapsedSeconds": 864000,
+        "elapsedFraction": 0.3333333333333333,
+        "consumed": 0.5256944444444439,
+        "remaining": 0.4743055555555561,
+        "projectedRemaining": 0,
+        "exhaustsAt": 1768869140290.6208,
+        "exhaustsInSeconds": 779540.2906208496,
+        "neverExhausts": false,
+        "state": "burning",
+        "notes": []
+      },
+      "alerts": [
+        {
+          "rule": {
+            "id": "fast-burn-page",
+            "severity": "page",
+            "longWindowSeconds": 3600,
+            "shortWindowSeconds": 300,
+            "burnRate": 14.4,
+            "publishedConsumed": 0.02,
+            "action": "Page the on-call: at this rate 2% of the budget is gone in one hour."
+          },
+          "long": {
+            "label": "fast-burn-page/long",
+            "windowSeconds": 3600,
+            "observedSeconds": 3600,
+            "coverage": 1,
+            "good": 980000,
+            "bad": 20000,
+            "total": 1000000,
+            "errorRate": 0.02,
+            "burnRate": 19.999999999999982,
+            "budgetConsumed": 0.027777777777777755,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768086000000,
+            "end": 1768089600000
+          },
+          "short": {
+            "label": "fast-burn-page/short",
+            "windowSeconds": 300,
+            "observedSeconds": 3600,
+            "coverage": 1,
+            "good": 980000,
+            "bad": 20000,
+            "total": 1000000,
+            "errorRate": 0.02,
+            "burnRate": 19.999999999999982,
+            "budgetConsumed": 0.002314814814814813,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768089300000,
+            "end": 1768089600000
+          },
+          "firing": true,
+          "evaluated": true,
+          "note": "firing: long 20.00x and short 20.00x both at or above 14.4x"
+        },
+        {
+          "rule": {
+            "id": "medium-burn-page",
+            "severity": "page",
+            "longWindowSeconds": 21600,
+            "shortWindowSeconds": 1800,
+            "burnRate": 6,
+            "publishedConsumed": 0.05,
+            "action": "Page the on-call: at this rate 5% of the budget is gone in six hours."
+          },
+          "long": {
+            "label": "medium-burn-page/long",
+            "windowSeconds": 21600,
+            "observedSeconds": 21600,
+            "coverage": 1,
+            "good": 5972500,
+            "bad": 27500,
+            "total": 6000000,
+            "errorRate": 0.004583333333333333,
+            "burnRate": 4.5833333333333295,
+            "budgetConsumed": 0.03819444444444441,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768068000000,
+            "end": 1768089600000
+          },
+          "short": {
+            "label": "medium-burn-page/short",
+            "windowSeconds": 1800,
+            "observedSeconds": 3600,
+            "coverage": 1,
+            "good": 980000,
+            "bad": 20000,
+            "total": 1000000,
+            "errorRate": 0.02,
+            "burnRate": 19.999999999999982,
+            "budgetConsumed": 0.013888888888888878,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768087800000,
+            "end": 1768089600000
+          },
+          "firing": false,
+          "evaluated": true,
+          "note": "clear: medium-burn-page/long burn 4.583x is below the 6x threshold"
+        },
+        {
+          "rule": {
+            "id": "slow-burn-ticket",
+            "severity": "ticket",
+            "longWindowSeconds": 86400,
+            "shortWindowSeconds": 7200,
+            "burnRate": 3,
+            "publishedConsumed": 0.1,
+            "action": "Open a ticket: at this rate 10% of the budget is gone in one day."
+          },
+          "long": {
+            "label": "slow-burn-ticket/long",
+            "windowSeconds": 86400,
+            "observedSeconds": 86400,
+            "coverage": 1,
+            "good": 23945500,
+            "bad": 54500,
+            "total": 24000000,
+            "errorRate": 0.0022708333333333335,
+            "burnRate": 2.2708333333333313,
+            "budgetConsumed": 0.07569444444444437,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768003200000,
+            "end": 1768089600000
+          },
+          "short": {
+            "label": "slow-burn-ticket/short",
+            "windowSeconds": 7200,
+            "observedSeconds": 7200,
+            "coverage": 1,
+            "good": 1978500,
+            "bad": 21500,
+            "total": 2000000,
+            "errorRate": 0.01075,
+            "burnRate": 10.74999999999999,
+            "budgetConsumed": 0.02986111111111108,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768082400000,
+            "end": 1768089600000
+          },
+          "firing": false,
+          "evaluated": true,
+          "note": "clear: slow-burn-ticket/long burn 2.271x is below the 3x threshold"
+        },
+        {
+          "rule": {
+            "id": "long-burn-ticket",
+            "severity": "ticket",
+            "longWindowSeconds": 259200,
+            "shortWindowSeconds": 21600,
+            "burnRate": 1,
+            "publishedConsumed": 0.1,
+            "action": "Open a ticket: the budget is being consumed faster than it replenishes."
+          },
+          "long": {
+            "label": "long-burn-ticket/long",
+            "windowSeconds": 259200,
+            "observedSeconds": 259200,
+            "coverage": 1,
+            "good": 71873500,
+            "bad": 126500,
+            "total": 72000000,
+            "errorRate": 0.0017569444444444444,
+            "burnRate": 1.7569444444444429,
+            "budgetConsumed": 0.1756944444444443,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1767830400000,
+            "end": 1768089600000
+          },
+          "short": {
+            "label": "long-burn-ticket/short",
+            "windowSeconds": 21600,
+            "observedSeconds": 21600,
+            "coverage": 1,
+            "good": 5972500,
+            "bad": 27500,
+            "total": 6000000,
+            "errorRate": 0.004583333333333333,
+            "burnRate": 4.5833333333333295,
+            "budgetConsumed": 0.03819444444444441,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768068000000,
+            "end": 1768089600000
+          },
+          "firing": true,
+          "evaluated": true,
+          "note": "firing: long 1.76x and short 4.58x both at or above 1x"
+        }
+      ],
+      "firing": [
+        {
+          "rule": {
+            "id": "fast-burn-page",
+            "severity": "page",
+            "longWindowSeconds": 3600,
+            "shortWindowSeconds": 300,
+            "burnRate": 14.4,
+            "publishedConsumed": 0.02,
+            "action": "Page the on-call: at this rate 2% of the budget is gone in one hour."
+          },
+          "long": {
+            "label": "fast-burn-page/long",
+            "windowSeconds": 3600,
+            "observedSeconds": 3600,
+            "coverage": 1,
+            "good": 980000,
+            "bad": 20000,
+            "total": 1000000,
+            "errorRate": 0.02,
+            "burnRate": 19.999999999999982,
+            "budgetConsumed": 0.027777777777777755,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768086000000,
+            "end": 1768089600000
+          },
+          "short": {
+            "label": "fast-burn-page/short",
+            "windowSeconds": 300,
+            "observedSeconds": 3600,
+            "coverage": 1,
+            "good": 980000,
+            "bad": 20000,
+            "total": 1000000,
+            "errorRate": 0.02,
+            "burnRate": 19.999999999999982,
+            "budgetConsumed": 0.002314814814814813,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768089300000,
+            "end": 1768089600000
+          },
+          "firing": true,
+          "evaluated": true,
+          "note": "firing: long 20.00x and short 20.00x both at or above 14.4x"
+        },
+        {
+          "rule": {
+            "id": "long-burn-ticket",
+            "severity": "ticket",
+            "longWindowSeconds": 259200,
+            "shortWindowSeconds": 21600,
+            "burnRate": 1,
+            "publishedConsumed": 0.1,
+            "action": "Open a ticket: the budget is being consumed faster than it replenishes."
+          },
+          "long": {
+            "label": "long-burn-ticket/long",
+            "windowSeconds": 259200,
+            "observedSeconds": 259200,
+            "coverage": 1,
+            "good": 71873500,
+            "bad": 126500,
+            "total": 72000000,
+            "errorRate": 0.0017569444444444444,
+            "burnRate": 1.7569444444444429,
+            "budgetConsumed": 0.1756944444444443,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1767830400000,
+            "end": 1768089600000
+          },
+          "short": {
+            "label": "long-burn-ticket/short",
+            "windowSeconds": 21600,
+            "observedSeconds": 21600,
+            "coverage": 1,
+            "good": 5972500,
+            "bad": 27500,
+            "total": 6000000,
+            "errorRate": 0.004583333333333333,
+            "burnRate": 4.5833333333333295,
+            "budgetConsumed": 0.03819444444444441,
+            "sufficient": true,
+            "note": "ok",
+            "start": 1768068000000,
+            "end": 1768089600000
+          },
+          "firing": true,
+          "evaluated": true,
+          "note": "firing: long 1.76x and short 4.58x both at or above 1x"
+        }
+      ],
+      "curve": [
+        {
+          "t": 1767229200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767232800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767236400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767240000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767243600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767247200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767250800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767254400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767258000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767261600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767265200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767268800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767272400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767276000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767279600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767283200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767286800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767290400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767294000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767297600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767301200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767304800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767308400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767312000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767315600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767319200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767322800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767326400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767330000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767333600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767337200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767340800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767344400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767348000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767351600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767355200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767358800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767362400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767366000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767369600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767373200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767376800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767380400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767384000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767387600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767391200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767394800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767398400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767402000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767405600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767409200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767412800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767416400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767420000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767423600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767427200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767430800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767434400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767438000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767441600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767445200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767448800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767452400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767456000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767459600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767463200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767466800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767470400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767474000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767477600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767481200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767484800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767488400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767492000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767495600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767499200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767502800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767506400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767510000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767513600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767517200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767520800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767524400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767528000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767531600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767535200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767538800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767542400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767546000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767549600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767553200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767556800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767560400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767564000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767567600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767571200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767574800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767578400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767582000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767585600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767589200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767592800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767596400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767600000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767603600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767607200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767610800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767614400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767618000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767621600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767625200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767628800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767632400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767636000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767639600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767643200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767646800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767650400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767654000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767657600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767661200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767664800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767668400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767672000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767675600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767679200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767682800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767686400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767690000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767693600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767697200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767700800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767704400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767708000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767711600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767715200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767718800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767722400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767726000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767729600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767733200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767736800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767740400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767744000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767747600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767751200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767754800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767758400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767762000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767765600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767769200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767772800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767776400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767780000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767783600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767787200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767790800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767794400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767798000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767801600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767805200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767808800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767812400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767816000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767819600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767823200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767826800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767830400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767834000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767837600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767841200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767844800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767848400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767852000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767855600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767859200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767862800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767866400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767870000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767873600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767877200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767880800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767884400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767888000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767891600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767895200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767898800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767902400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767906000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767909600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767913200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767916800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767920400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767924000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767927600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767931200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767934800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767938400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767942000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767945600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767949200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767952800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767956400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767960000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767963600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767967200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767970800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767974400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767978000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767981600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767985200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767988800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767992400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767996000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1767999600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768003200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768006800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768010400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768014000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768017600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768021200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768024800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768028400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768032000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768035600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768039200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768042800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768046400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768050000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768053600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768057200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768060800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768064400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768068000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768071600000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768075200000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768078800000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768082400000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768086000000,
+          "good": 998500,
+          "bad": 1500,
+          "total": 1000000,
+          "errorRate": 0.0015,
+          "burnRate": 1.4999999999999987
+        },
+        {
+          "t": 1768089600000,
+          "good": 980000,
+          "bad": 20000,
+          "total": 1000000,
+          "errorRate": 0.02,
+          "burnRate": 19.999999999999982
+        }
+      ],
+      "observations": [
+        "Error rate 0.158% against a 99.90% objective (budget 0.1%).",
+        "Burn rate over the SLO window is 1.58x (faster than sustainable).",
+        "52.57% of the budget consumed after 33.33% of the window has elapsed; 47.43% remaining.",
+        "Projected exhaustion in 9d 32m at the current rate.",
+        "2 of 4 rules firing (1 page and 1 ticket): fast-burn-page, long-burn-ticket"
+      ],
+      "warnings": []
+    }
+  ],
+  "skipped": [],
+  "dataQuality": [],
+  "minCoverage": 0.5
+}

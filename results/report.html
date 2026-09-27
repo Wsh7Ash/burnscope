@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Burnscope report 2026-01-11</title>
+<style>
+:root {
+  color-scheme: light;
+  --ink: #16191d;
+  --muted: #5b6470;
+  --line: #dfe3e8;
+  --accent: #1a56a8;
+  --surface: #ffffff;
+  --sunken: #f6f8fa;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--sunken);
+}
+.page { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; }
+header.page { padding-top: 2rem; }
+h1 { font-size: 1.6rem; margin: 0 0 .25rem; }
+h2 { font-size: 1.2rem; margin: 0 0 .5rem; display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+h3 { font-size: 1rem; margin: 1.5rem 0 .5rem; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+.meta { color: var(--muted); margin: 0 0 1.5rem; }
+.desc { color: var(--muted); margin: 0 0 .75rem; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  margin: 0 0 1.5rem;
+}
+.badge {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  vertical-align: middle;
+}
+dl.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: .75rem 1.25rem;
+  margin: 1rem 0 1.25rem;
+}
+dl.grid dt { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
+dl.grid dd { margin: .15rem 0 0; font-weight: 600; word-break: break-word; }
+.budget { margin: 1rem 0 1.5rem; }
+.budget-label { color: var(--muted); font-size: .82rem; margin-bottom: .35rem; }
+.budget-track {
+  display: flex;
+  height: .85rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--sunken);
+  border: 1px solid var(--line);
+}
+.budget-used { background: #d9822b; }
+.budget-left { background: #6fb98a; }
+figure.chart { margin: 0 0 .5rem; }
+figure.chart figcaption { color: var(--muted); font-size: .82rem; margin-bottom: .4rem; }
+svg { width: 100%; height: auto; display: block; }
+svg .axis { font-size: 11px; fill: var(--muted); }
+svg .zone { font-size: 11px; fill: #8c2f00; }
+table { width: 100%; border-collapse: collapse; margin: .25rem 0 .5rem; font-size: .9rem; }
+th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .04em; }
+tr.firing td { background: #fdf1e7; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+.action { background: #fdf1e7; border-left: 3px solid #d9822b; padding: .5rem .75rem; margin: .4rem 0; font-size: .9rem; }
+ul.notes { margin: .25rem 0; padding-left: 1.1rem; }
+ul.notes li { margin: .2rem 0; }
+ul.notes.warn li { color: #7a4700; }
+footer.page { color: var(--muted); font-size: .82rem; padding: .5rem 0 3rem; }
+a { color: var(--accent); }
+@media print {
+  body { background: #fff; }
+  .card { break-inside: avoid; border-color: #bbb; }
+}
+</style>
+</head>
+<body>
+<header class="page">
+<h1>Burnscope report</h1>
+<p class="meta">Analyzed at <strong>2026-01-11T00:00:00Z</strong> · alert profile <strong>Google SRE workbook</strong> <code>google-sre</code> · minimum window coverage 50%</p>
+</header>
+<main class="page">
+<section class="card"><h2>Summary</h2><table><thead><tr><th>SLO</th><th>Objective</th><th>Burn rate</th><th>Budget used</th><th>Remaining</th><th>State</th><th>Rules firing</th></tr></thead><tbody>
+<tr><td><a href="#checkout"><code>checkout</code></a></td><td>99.90%</td><td>1.58x</td><td>52.57%</td><td>47.43%</td><td><span class="badge" style="color:#8c2f00;background:#fde5d6">BURNING</span></td><td>2 of 4</td></tr>
+</tbody></table></section>
+<section class="card" id="checkout">
+<h2><code>checkout</code> <span class="badge" style="color:#8c2f00;background:#fde5d6">BURNING</span></h2>
+<p class="desc">Checkout API availability.</p>
+<dl class="grid">
+<div><dt>Objective</dt><dd>99.90%</dd></div>
+<div><dt>Error budget</dt><dd>0.100%</dd></div>
+<div><dt>Error rate</dt><dd>0.158%</dd></div>
+<div><dt>Burn rate</dt><dd>1.58x (1x is sustainable)</dd></div>
+<div><dt>Window elapsed</dt><dd>10d of 30d (33.33%)</dd></div>
+<div><dt>Runway</dt><dd>9d 32m</dd></div>
+<div><dt>Exhaustion</dt><dd>2026-01-20T00:32:20.290Z</dd></div>
+<div><dt>Series matched</dt><dd>1 good, 1 bad</dd></div>
+</dl>
+<div class="budget"><div class="budget-label">Error budget: 52.57% used, 47.43% remaining</div><div class="budget-track" role="img" aria-label="Error budget: 52.57% used, 47.43% remaining"><div class="budget-used" style="width:52.57%"></div><div class="budget-left" style="width:47.43%"></div></div></div>
+<figure class="chart"><figcaption>Burn rate over time (log scale) — 240 intervals, peak 20x at 2026-01-11T00:00:00Z</figcaption><svg viewBox="0 0 900 300" role="img" aria-label="Burn rate over time (log scale) — 240 intervals, peak 20x at 2026-01-11T00:00:00Z" preserveAspectRatio="xMidYMid meet"><rect x="58" y="18.0" width="824" height="97.6" fill="#fbdcdc" fill-opacity="0.55"></rect><text class="zone" x="876" y="32.0" text-anchor="end">faster than sustainable</text><line x1="58" y1="262.0" x2="882" y2="262.0" stroke="#d8dde3" stroke-width="1" stroke-dasharray="3 3" ></line><text class="axis" x="50" y="266.0" text-anchor="end">0.001x</text><line x1="58" y1="213.2" x2="882" y2="213.2" stroke="#d8dde3" stroke-width="1" stroke-dasharray="3 3" ></line><text class="axis" x="50" y="217.2" text-anchor="end">0.01x</text><line x1="58" y1="164.4" x2="882" y2="164.4" stroke="#d8dde3" stroke-width="1" stroke-dasharray="3 3" ></line><text class="axis" x="50" y="168.4" text-anchor="end">0.1x</text><line x1="58" y1="115.6" x2="882" y2="115.6" stroke="#b3261e" stroke-width="1.5" ></line><text class="axis" x="50" y="119.6" text-anchor="end">1x</text><line x1="58" y1="66.8" x2="882" y2="66.8" stroke="#d8dde3" stroke-width="1" stroke-dasharray="3 3" ></line><text class="axis" x="50" y="70.8" text-anchor="end">10x</text><line x1="58" y1="18.0" x2="882" y2="18.0" stroke="#d8dde3" stroke-width="1" stroke-dasharray="3 3" ></line><text class="axis" x="50" y="22.0" text-anchor="end">100x</text><path d="M58.0 107.0 L61.4 107.0 L64.9 107.0 L68.3 107.0 L71.8 107.0 L75.2 107.0 L78.7 107.0 L82.1 107.0 L85.6 107.0 L89.0 107.0 L92.5 107.0 L95.9 107.0 L99.4 107.0 L102.8 107.0 L106.3 107.0 L109.7 107.0 L113.2 107.0 L116.6 107.0 L120.1 107.0 L123.5 107.0 L127.0 107.0 L130.4 107.0 L133.8 107.0 L137.3 107.0 L140.7 107.0 L144.2 107.0 L147.6 107.0 L151.1 107.0 L154.5 107.0 L158.0 107.0 L161.4 107.0 L164.9 107.0 L168.3 107.0 L171.8 107.0 L175.2 107.0 L178.7 107.0 L182.1 107.0 L185.6 107.0 L189.0 107.0 L192.5 107.0 L195.9 107.0 L199.4 107.0 L202.8 107.0 L206.3 107.0 L209.7 107.0 L213.1 107.0 L216.6 107.0 L220.0 107.0 L223.5 107.0 L226.9 107.0 L230.4 107.0 L233.8 107.0 L237.3 107.0 L240.7 107.0 L244.2 107.0 L247.6 107.0 L251.1 107.0 L254.5 107.0 L258.0 107.0 L261.4 107.0 L264.9 107.0 L268.3 107.0 L271.8 107.0 L275.2 107.0 L278.7 107.0 L282.1 107.0 L285.5 107.0 L289.0 107.0 L292.4 107.0 L295.9 107.0 L299.3 107.0 L302.8 107.0 L306.2 107.0 L309.7 107.0 L313.1 107.0 L316.6 107.0 L320.0 107.0 L323.5 107.0 L326.9 107.0 L330.4 107.0 L333.8 107.0 L337.3 107.0 L340.7 107.0 L344.2 107.0 L347.6 107.0 L351.1 107.0 L354.5 107.0 L357.9 107.0 L361.4 107.0 L364.8 107.0 L368.3 107.0 L371.7 107.0 L375.2 107.0 L378.6 107.0 L382.1 107.0 L385.5 107.0 L389.0 107.0 L392.4 107.0 L395.9 107.0 L399.3 107.0 L402.8 107.0 L406.2 107.0 L409.7 107.0 L413.1 107.0 L416.6 107.0 L420.0 107.0 L423.5 107.0 L426.9 107.0 L430.4 107.0 L433.8 107.0 L437.2 107.0 L440.7 107.0 L444.1 107.0 L447.6 107.0 L451.0 107.0 L454.5 107.0 L457.9 107.0 L461.4 107.0 L464.8 107.0 L468.3 107.0 L471.7 107.0 L475.2 107.0 L478.6 107.0 L482.1 107.0 L485.5 107.0 L489.0 107.0 L492.4 107.0 L495.9 107.0 L499.3 107.0 L502.8 107.0 L506.2 107.0 L509.6 107.0 L513.1 107.0 L516.5 107.0 L520.0 107.0 L523.4 107.0 L526.9 107.0 L530.3 107.0 L533.8 107.0 L537.2 107.0 L540.7 107.0 L544.1 107.0 L547.6 107.0 L551.0 107.0 L554.5 107.0 L557.9 107.0 L561.4 107.0 L564.8 107.0 L568.3 107.0 L571.7 107.0 L575.2 107.0 L578.6 107.0 L582.1 107.0 L585.5 107.0 L588.9 107.0 L592.4 107.0 L595.8 107.0 L599.3 107.0 L602.7 107.0 L606.2 107.0 L609.6 107.0 L613.1 107.0 L616.5 107.0 L620.0 107.0 L623.4 107.0 L626.9 107.0 L630.3 107.0 L633.8 107.0 L637.2 107.0 L640.7 107.0 L644.1 107.0 L647.6 107.0 L651.0 107.0 L654.5 107.0 L657.9 107.0 L661.3 107.0 L664.8 107.0 L668.2 107.0 L671.7 107.0 L675.1 107.0 L678.6 107.0 L682.0 107.0 L685.5 107.0 L688.9 107.0 L692.4 107.0 L695.8 107.0 L699.3 107.0 L702.7 107.0 L706.2 107.0 L709.6 107.0 L713.1 107.0 L716.5 107.0 L720.0 107.0 L723.4 107.0 L726.9 107.0 L730.3 107.0 L733.7 107.0 L737.2 107.0 L740.6 107.0 L744.1 107.0 L747.5 107.0 L751.0 107.0 L754.4 107.0 L757.9 107.0 L761.3 107.0 L764.8 107.0 L768.2 107.0 L771.7 107.0 L775.1 107.0 L778.6 107.0 L782.0 107.0 L785.5 107.0 L788.9 107.0 L792.4 107.0 L795.8 107.0 L799.3 107.0 L802.7 107.0 L806.2 107.0 L809.6 107.0 L813.0 107.0 L816.5 107.0 L819.9 107.0 L823.4 107.0 L826.8 107.0 L830.3 107.0 L833.7 107.0 L837.2 107.0 L840.6 107.0 L844.1 107.0 L847.5 107.0 L851.0 107.0 L854.4 107.0 L857.9 107.0 L861.3 107.0 L864.8 107.0 L868.2 107.0 L871.7 107.0 L875.1 107.0 L878.6 107.0 L882.0 52.1" fill="none" stroke="#1a56a8" stroke-width="1.6" stroke-linejoin="round"></path><text class="axis" x="58" y="286">2026-01-01</text><text class="axis" x="882" y="286" text-anchor="end">2026-01-11</text><line x1="58" y1="18" x2="58" y2="262" stroke="#8b949e"></line><line x1="58" y1="262" x2="882" y2="262" stroke="#8b949e"></line></svg></figure>
+<h3>Multi-window multi-burn-rate alerts</h3>
+<table class="alerts"><thead><tr><th>Rule</th><th>Severity</th><th>Long</th><th>Short</th><th>Threshold</th><th>Long burn</th><th>Short burn</th><th>Status</th></tr></thead><tbody>
+<tr class="firing"><td><code>fast-burn-page</code></td><td>page</td><td>1h</td><td>5m</td><td>14.4x</td><td>20x</td><td>20x</td><td>FIRING</td></tr>
+<tr><td><code>medium-burn-page</code></td><td>page</td><td>6h</td><td>30m</td><td>6x</td><td>4.58x</td><td>20x</td><td>clear</td></tr>
+<tr><td><code>slow-burn-ticket</code></td><td>ticket</td><td>1d</td><td>2h</td><td>3x</td><td>2.27x</td><td>10.75x</td><td>clear</td></tr>
+<tr class="firing"><td><code>long-burn-ticket</code></td><td>ticket</td><td>3d</td><td>6h</td><td>1x</td><td>1.76x</td><td>4.58x</td><td>FIRING</td></tr>
+</tbody></table>
+<p class="action">Page the on-call: at this rate 2% of the budget is gone in one hour.</p>
+<p class="action">Open a ticket: the budget is being consumed faster than it replenishes.</p>
+<h3>Observations</h3><ul class="notes">
+<li>Error rate 0.158% against a 99.90% objective (budget 0.1%).</li>
+<li>Burn rate over the SLO window is 1.58x (faster than sustainable).</li>
+<li>52.57% of the budget consumed after 33.33% of the window has elapsed; 47.43% remaining.</li>
+<li>Projected exhaustion in 9d 32m at the current rate.</li>
+<li>2 of 4 rules firing (1 page and 1 ticket): fast-burn-page, long-burn-ticket</li>
+</ul>
+</section>
+</main>
+<footer class="page"><p>Generated by burnscope 1.0.0. No network requests were made.</p></footer>
+</body>
+</html>

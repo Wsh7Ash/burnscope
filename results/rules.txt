@@ -1,0 +1,33 @@
+Google SRE workbook (google-sre)
+Four severity-tiered rules: two fast page-worthy burns and two slower ticket-worthy burns, each gated on a long and a short window agreeing.
+Reference period: 30d
+
+A rule fires only when BOTH its long and its short window reach the burn-rate threshold.
+
+fast-burn-page  [page]
+  long window   1h  (threshold 14.4x)
+  short window  5m  (must also reach 14.4x)
+  budget used   2.00% of the 30d budget by the end of the long window
+  for a 30d period this rule is designed to burn 2.00%
+  action        Page the on-call: at this rate 2% of the budget is gone in one hour.
+
+medium-burn-page  [page]
+  long window   6h  (threshold 6x)
+  short window  30m  (must also reach 6x)
+  budget used   5.00% of the 30d budget by the end of the long window
+  for a 30d period this rule is designed to burn 5.00%
+  action        Page the on-call: at this rate 5% of the budget is gone in six hours.
+
+slow-burn-ticket  [ticket]
+  long window   1d  (threshold 3x)
+  short window  2h  (must also reach 3x)
+  budget used   10.00% of the 30d budget by the end of the long window
+  for a 30d period this rule is designed to burn 10.00%
+  action        Open a ticket: at this rate 10% of the budget is gone in one day.
+
+long-burn-ticket  [ticket]
+  long window   3d  (threshold 1x)
+  short window  6h  (must also reach 1x)
+  budget used   10.00% of the 30d budget by the end of the long window
+  for a 30d period this rule is designed to burn 10.00%
+  action        Open a ticket: the budget is being consumed faster than it replenishes.

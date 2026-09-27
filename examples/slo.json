@@ -1,0 +1,23 @@
+{
+  "slos": [
+    {
+      "name": "checkout",
+      "description": "Checkout API availability.",
+      "objective": 0.999,
+      "period": "30d",
+      "periodStart": "2026-01-01T00:00:00Z",
+      "metric": "requests_total",
+      "good": {
+        "matchers": {
+          "code": "=~2.."
+        }
+      },
+      "bad": {
+        "matchers": {
+          "code": "=~5.."
+        }
+      }
+    }
+  ],
+  "alertProfile": "google-sre"
+}

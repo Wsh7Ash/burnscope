@@ -1,0 +1,10 @@
+file        examples/metrics.prom
+format      prometheus
+series      2
+samples     482
+from        2025-12-31T23:00:00.000Z
+to          2026-01-11T00:00:00.000Z
+
+series
+  requests_total{code="200",job="api"}  241 samples  from 2025-12-31T23:00:00.000Z to 2026-01-11T00:00:00.000Z
+  requests_total{code="500",job="api"}  241 samples  from 2025-12-31T23:00:00.000Z to 2026-01-11T00:00:00.000Z

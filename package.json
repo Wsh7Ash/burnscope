@@ -1,0 +1,54 @@
+{
+  "name": "burnscope",
+  "version": "1.0.0",
+  "description": "SLO burn-rate and error-budget explorer: multi-window multi-burn-rate alerting, budget exhaustion projection, and self-contained burn reports from Prometheus-style metrics",
+  "keywords": [
+    "slo",
+    "sre",
+    "observability",
+    "error-budget",
+    "burn-rate",
+    "prometheus",
+    "monitoring",
+    "reliability",
+    "alerting"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "bin": {
+    "burnscope": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "node -e \"const fs=require('node:fs');for(const d of ['dist','dist-test'])fs.rmSync(d,{recursive:true,force:true})\"",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "pretest": "tsc -p tsconfig.test.json",
+    "test": "node --test dist-test/tests/*.test.js",
+    "predemo": "tsc -p tsconfig.test.json",
+    "demo": "node dist-test/demo/demo.js",
+    "predemo:quick": "tsc -p tsconfig.test.json",
+    "demo:quick": "node dist-test/demo/demo.js --quick",
+    "verify": "npm run typecheck && npm run test && npm run demo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
